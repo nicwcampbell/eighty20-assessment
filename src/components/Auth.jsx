@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import { useNavigate } from "react-router-dom";
+import AuthSwitch from "./AuthSwitch";
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -15,7 +16,18 @@ const Auth = () => {
 
   const [authType, setAuthType] = useState("login");
 
-  return <>{authType === "login" ? <Login /> : <SignUp />}</>;
+  const switchAuthType = () => {
+    setAuthType((prevAuthType) =>
+      prevAuthType === "login" ? "signUp" : "login"
+    );
+  };
+
+  return (
+    <>
+      {authType === "login" ? <Login /> : <SignUp />}
+      <AuthSwitch authType={authType} switchAuthType={switchAuthType} />
+    </>
+  );
 };
 
 export default Auth;

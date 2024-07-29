@@ -10,30 +10,32 @@ function App() {
   useAuthListener();
 
   return (
-    <>
-      <Router>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <Welcome />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/auth" element={<Auth />} />
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="*" element={<Welcome />} />
-        </Routes>
-      </Router>
-    </>
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="w-full max-w-md">
+        <Router>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <Welcome />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/auth" element={<Auth />} />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="*" element={<Welcome />} />
+          </Routes>
+        </Router>
+      </div>
+    </div>
   );
 }
 
