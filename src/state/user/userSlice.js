@@ -89,15 +89,15 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       })
-      .addCase(signOut.pending, (state) => {
+      .addCase(signOutUser.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(signOut.fulfilled, (state, action) => {
-        state.user = action.payload;
+      .addCase(signOutUser.fulfilled, (state) => {
+        state.user = null;
         state.isLoading = false;
       })
-      .addCase(signOut.rejected, (state, action) => {
+      .addCase(signOutUser.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });
