@@ -14,7 +14,7 @@ const Login = () => {
       e.preventDefault();
 
       setIsSubmitting(true);
-      await dispatch(login({ email, password }));
+      await dispatch(login({ email, password })); // Call async Firebase login
     } catch (error) {
       console.log(error);
     } finally {

@@ -1,3 +1,11 @@
+import PropTypes from "prop-types";
+
+// Define PropTypes
+AuthSwitch.propTypes = {
+  authType: PropTypes.string.isRequired,
+  switchAuthType: PropTypes.func.isRequired,
+};
+
 const AuthSwitch = ({ authType, switchAuthType }) => {
   return (
     <p className="mt-10 text-center text-sm text-gray-500">
