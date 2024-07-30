@@ -26,15 +26,17 @@ const Auth = () => {
   };
 
   return (
-    <>
-      {authType === "login" ? <Login /> : <SignUp />}
-      {errorCode && (
-        <p className="text-red-700 text-center mt-5">
-          {errorMessageInterpreter(errorCode)}
-        </p>
-      )}
-      <AuthSwitch authType={authType} switchAuthType={switchAuthType} />
-    </>
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="w-full max-w-md">
+        {authType === "login" ? <Login /> : <SignUp />}
+        {errorCode && (
+          <p className="text-red-700 text-center mt-5">
+            {errorMessageInterpreter(errorCode)}
+          </p>
+        )}
+        <AuthSwitch authType={authType} switchAuthType={switchAuthType} />
+      </div>
+    </div>
   );
 };
 

@@ -7,6 +7,7 @@ import Profile from "./components/Profile";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useSelector } from "react-redux";
 import Spinner from "./components/Spinner";
+import AuthenticatedLayout from "./components/AuthenticatedLayout";
 
 function App() {
   useAuthListener();
@@ -18,32 +19,18 @@ function App() {
   return (
     <>
       {isAuthInitialized ? (
-        <div className="flex items-center justify-center min-h-screen">
-          <div className="w-full max-w-md">
-            <Router>
-              <Routes>
-                <Route
-                  path="/"
-                  element={
-                    <ProtectedRoute>
-                      <Welcome />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route path="/auth" element={<Auth />} />
-                <Route
-                  path="/profile"
-                  element={
-                    <ProtectedRoute>
-                      <Profile />
-                    </ProtectedRoute>
-                  }
-                />
+        <Router>
+          <Routes>
+            <Route path="/auth" element={<Auth />} />
+            <Route element={<ProtectedRoute />}>
+              <Route element={<AuthenticatedLayout />}>
+                <Route path="/" element={<Welcome />} />
+                <Route path="/profile" element={<Profile />} />
                 <Route path="*" element={<Welcome />} />
-              </Routes>
-            </Router>
-          </div>
-        </div>
+              </Route>
+            </Route>
+          </Routes>
+        </Router>
       ) : (
         <Spinner />
       )}
