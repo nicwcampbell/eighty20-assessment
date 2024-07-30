@@ -12,6 +12,12 @@ const errorMessageInterpreter = (errorCode) => {
       return "Passwords do not match.";
     case "auth/weak-password":
       return "Password must be at least 6 characters.";
+    case "Error: FirebaseError: Firebase: Error (auth/invalid-credential).":
+      return "Invalid credentials. Please check your current password.";
+    case "FirebaseError: Firebase: Password should be at least 6 characters (auth/weak-password).":
+      return "Password must be at least 6 characters.";
+    case "Current and new password can't be the same.":
+      return "Current and new password can't be the same.";
     default:
       return "An unknown error occurred. Please try again.";
   }
