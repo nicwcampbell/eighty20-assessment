@@ -10,12 +10,12 @@ import Spinner from "./components/Spinner";
 import AuthenticatedLayout from "./components/AuthenticatedLayout";
 
 function App() {
-  useAuthListener();
+  useAuthListener(); //Manages the initialization of the user and Firebase observer and unsubscribing cleanup
 
   const isAuthInitialized = useSelector(
     (state) => state.user.isAuthInitialized
   );
-
+  // App will show a spinner if the useAuthListener has not yet run for the first time. This is to avoid unintentional redirects or half ready UI.
   return (
     <>
       {isAuthInitialized ? (

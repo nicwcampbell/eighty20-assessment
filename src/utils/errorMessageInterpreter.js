@@ -1,3 +1,4 @@
+// Interpret the Firebase messages into more user friendly ones
 const errorMessageInterpreter = (errorCode) => {
   switch (errorCode) {
     case "auth/invalid-credential":

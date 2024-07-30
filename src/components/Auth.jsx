@@ -12,10 +12,10 @@ const Auth = () => {
 
   const errorCode = useSelector((state) => state.user.errorCode);
   const user = useSelector((state) => state.user.user);
-  const [authType, setAuthType] = useState("login");
+  const [authType, setAuthType] = useState("login"); // Alternate between login and signUp
 
   if (user) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/" replace />; // If already signed in then take to landing page
   }
 
   const switchAuthType = () => {

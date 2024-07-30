@@ -1,5 +1,3 @@
-import React from "react";
-
 const AuthSwitch = ({ authType, switchAuthType }) => {
   return (
     <p className="mt-10 text-center text-sm text-gray-500">

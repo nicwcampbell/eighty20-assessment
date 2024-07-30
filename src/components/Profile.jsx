@@ -25,10 +25,10 @@ const Profile = () => {
       }
 
       setIsSubmitting(true);
-      await updateUserPassword(currentPassword, newPassword);
-      dispatch(setErrorCode(""));
+      await updateUserPassword(currentPassword, newPassword); // Re-authenticates using currentPassword and then updates the password with the new one
+      dispatch(setErrorCode("")); // Reset any error that was there
       alert("Password successfully changed.");
-      setCurrentPassword("");
+      setCurrentPassword(""); // lear fields
       setNewPassword("");
       setNewPasswordConfirmation("");
     } catch (error) {

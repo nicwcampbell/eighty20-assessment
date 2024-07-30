@@ -6,6 +6,7 @@ import {
   signOut,
 } from "firebase/auth";
 
+// Create async Firebase API calls
 export const login = createAsyncThunk(
   "user/login",
   async ({ email, password }, { rejectWithValue }) => {
@@ -50,10 +51,10 @@ export const signOutUser = createAsyncThunk(
 );
 
 const initialState = {
-  user: null,
-  isLoading: true,
-  errorCode: null,
-  isAuthInitialized: false,
+  user: null, //holds the full set of Firebase user properties
+  isLoading: true, // Used to know if busy running the async actions
+  errorCode: null, // Used to display user errors
+  isAuthInitialized: false, // Used to know if the current user has yet to be set or not in the state
 };
 
 const userSlice = createSlice({

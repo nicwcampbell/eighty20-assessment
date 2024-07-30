@@ -21,9 +21,9 @@ const SignUp = () => {
       }
 
       setIsSubmitting(true);
-      await dispatch(signUp({ email, password }));
+      await dispatch(signUp({ email, password })); //Call async Firebase sign up
     } catch (error) {
-      console.log("hello");
+      console.log(error);
     } finally {
       setIsSubmitting(false);
     }
