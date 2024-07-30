@@ -16,7 +16,7 @@ const Login = () => {
       setIsSubmitting(true);
       await dispatch(login({ email, password }));
     } catch (error) {
-      console.log("hello");
+      console.log(error);
     } finally {
       setIsSubmitting(false);
     }

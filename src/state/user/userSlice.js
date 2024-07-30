@@ -15,7 +15,7 @@ export const login = createAsyncThunk(
         email,
         password
       );
-      return userCredential.user;
+      return userCredential.user.toJSON();
     } catch (error) {
       return rejectWithValue(error.code);
     }
@@ -31,7 +31,7 @@ export const signUp = createAsyncThunk(
         email,
         password
       );
-      return userCredential.user;
+      return userCredential.user.toJSON();
     } catch (error) {
       return rejectWithValue(error.code);
     }
@@ -53,6 +53,7 @@ const initialState = {
   user: null,
   isLoading: true,
   errorCode: null,
+  isAuthInitialized: false,
 };
 
 const userSlice = createSlice({
@@ -64,6 +65,9 @@ const userSlice = createSlice({
     },
     setErrorCode: (state, action) => {
       state.errorCode = action.payload;
+    },
+    setIsAuthInitialized: (state, action) => {
+      state.isAuthInitialized = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -107,6 +111,7 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUser, setErrorCode } = userSlice.actions;
+export const { setUser, setErrorCode, setIsAuthInitialized } =
+  userSlice.actions;
 
 export default userSlice.reducer;

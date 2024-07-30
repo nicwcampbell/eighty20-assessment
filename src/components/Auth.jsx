@@ -2,24 +2,21 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Login from "./Login";
 import SignUp from "./SignUp";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import AuthSwitch from "./AuthSwitch";
 import errorMessageInterpreter from "../utils/errorMessageInterpreter";
 import { setErrorCode } from "../state/user/userSlice";
 
 const Auth = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const errorCode = useSelector((state) => state.user.errorCode);
-
   const user = useSelector((state) => state.user.user);
+  const [authType, setAuthType] = useState("login");
 
   if (user) {
-    navigate("/");
+    return <Navigate to="/" replace />;
   }
-
-  const [authType, setAuthType] = useState("login");
 
   const switchAuthType = () => {
     setAuthType((prevAuthType) =>
