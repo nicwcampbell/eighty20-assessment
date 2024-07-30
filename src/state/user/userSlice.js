@@ -17,7 +17,7 @@ export const login = createAsyncThunk(
       );
       return userCredential.user;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.code);
     }
   }
 );
@@ -33,7 +33,7 @@ export const signUp = createAsyncThunk(
       );
       return userCredential.user;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.code);
     }
   }
 );
@@ -44,7 +44,7 @@ export const signOutUser = createAsyncThunk(
     try {
       await signOut(auth);
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.code);
     }
   }
 );
@@ -52,7 +52,7 @@ export const signOutUser = createAsyncThunk(
 const initialState = {
   user: null,
   isLoading: true,
-  error: null,
+  errorCode: null,
 };
 
 const userSlice = createSlice({
@@ -62,12 +62,15 @@ const userSlice = createSlice({
     setUser: (state, action) => {
       state.user = action.payload;
     },
+    setErrorCode: (state, action) => {
+      state.errorCode = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(login.pending, (state) => {
         state.isLoading = true;
-        state.error = null;
+        state.errorCode = null;
       })
       .addCase(login.fulfilled, (state, action) => {
         state.user = action.payload;
@@ -75,11 +78,11 @@ const userSlice = createSlice({
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.errorCode = action.payload;
       })
       .addCase(signUp.pending, (state) => {
         state.isLoading = true;
-        state.error = null;
+        state.errorCode = null;
       })
       .addCase(signUp.fulfilled, (state, action) => {
         state.user = action.payload;
@@ -87,11 +90,11 @@ const userSlice = createSlice({
       })
       .addCase(signUp.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.errorCode = action.payload;
       })
       .addCase(signOutUser.pending, (state) => {
         state.isLoading = true;
-        state.error = null;
+        state.errorCode = null;
       })
       .addCase(signOutUser.fulfilled, (state) => {
         state.user = null;
@@ -99,11 +102,11 @@ const userSlice = createSlice({
       })
       .addCase(signOutUser.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.errorCode = action.payload;
       });
   },
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser, setErrorCode } = userSlice.actions;
 
 export default userSlice.reducer;
